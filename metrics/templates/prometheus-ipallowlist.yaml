@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: prometheus-ipallowlist
+spec:
+  ipAllowList:
+    sourceRange:
+    {{- range (split "," .Values.prometheus.server.ingressRoute.allowedIps) }}
+      - {{ . }}
+    {{- end }}

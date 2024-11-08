@@ -1,0 +1,90 @@
+argo-cd:
+  crds:
+    install: true
+
+  global:
+    domain: argo.$KUBE_DOMAIN
+    allowedIps: $ARGO_ALLOWED_IPS
+    addPrometheusAnnotations: true
+      
+  configs:
+    params:
+      server.insecure: true
+
+    # cm:
+    #   oidc.config: |
+    #     name: OPENID
+    #     issuer: https://issuer-url
+    #     clientID: ""
+    #     clientSecret: ""
+    #     requestedScopes: ["openid", "profile", "email", "groups"]
+
+    rbac:
+      # -- OIDC scopes to examine during rbac enforcement (in addition to `sub` scope).
+      # The scope value can be a string, or a list of strings.
+      scopes: "[groups]"
+      policy.csv: ''
+      # Policy rules are in the form:
+      #  p, subject, resource, action, object, effect
+      # Role definitions and bindings are in the form:
+      #  g, subject, inherited-subject
+      # policy.csv: |
+      #   p, role:org-admin, applications, *, */*, allow
+      #   p, role:org-admin, clusters, get, *, allow
+      #   p, role:org-admin, repositories, *, *, allow
+      #   p, role:org-admin, logs, get, *, allow
+      #   p, role:org-admin, exec, create, */*, allow
+      #   g, your-github-org:your-team, role:org-admin
+    
+  redis:
+    metrics:
+      enabled: true
+
+  redis-ha:
+    enabled: false
+    haproxy:
+      metrics:
+        enabled: true
+
+  controller:
+    replicas: 1
+    metrics:
+      enabled: true
+
+  server:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+    metrics:
+      enabled: true
+
+  repoServer:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+    metrics:
+      enabled: true
+
+  dex:
+    metrics:
+      enabled: true
+
+  applicationSet:
+    replicas: 2
+    metrics:
+      enabled: true
+  
+  notifications:
+    metrics:
+      enabled: true
+
+
+argocd-image-updater:
+  config:
+    registries: []
+
+argo-rollouts:
+  controller:
+    extraArgs:
+      - "--traefik-api-group=traefik.io"
+      - "--traefik-api-version=traefik.io/v1alpha1"

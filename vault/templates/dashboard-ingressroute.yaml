@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.dashboard.hostname }}`)
+      priority: 10
+      middlewares:
+        - name: dashboard-ipallowlist
+      services:
+        - name: vault
+          port: http
+  tls:
+    secretName: {{ .Values.dashboard.hostname }}-tls

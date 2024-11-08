@@ -1,0 +1,24 @@
+dashboard:
+  hostname: vault.$KUBE_DOMAIN
+  allowedIps: $VAULT_UI_ALLOWED_IPS
+
+vault:
+  webhook:
+    namespaceSelector:
+      matchExpressions:
+      - key: kubernetes.io/metadata.name
+        operator: NotIn
+        values:
+        - kube-system
+  csi:
+    enabled: true
+  server:
+    enabled: true
+    dataStorage:
+      accessMode: ReadWriteMany
+      storageClass: $STORAGE_CLASS
+      size: 16G
+    ingress:
+      enabled: false
+  ui:
+    enabled: true

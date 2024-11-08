@@ -1,0 +1,71 @@
+hostname: linkerd.$KUBE_DOMAIN
+allowedIps: $LINKERD_ALLOWED_IPS
+
+certificate:
+  crt: |
+$LINKERD_CA_CRT
+  key: |
+$LINKERD_CA_KEY
+
+linkerd-control-plane:
+  identity:
+    externalCA: true
+    issuer:
+      scheme: kubernetes.io/tls
+
+  enablePodDisruptionBudget: true
+
+  controller:
+    podDisruptionBudget:
+      minAvailable: 50%
+
+  deploymentStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 25%
+
+  enablePodAntiAffinity: true
+
+  proxy:
+    resources:
+      cpu:
+        request: 100m
+      memory:
+        limit: 250Mi
+        request: 20Mi
+
+  controllerReplicas: 3
+  controllerResources: &controller_resources
+    cpu: &controller_resources_cpu
+      limit: ""
+      request: 100m
+    memory:
+      limit: 250Mi
+      request: 50Mi
+  destinationResources: *controller_resources
+
+  identityResources:
+    cpu: *controller_resources_cpu
+    memory:
+      limit: 250Mi
+      request: 10Mi
+
+  heartbeatResources: *controller_resources
+  proxyInjectorResources: *controller_resources
+  webhookFailurePolicy: Fail
+  spValidatorResources: *controller_resources
+  highAvailability: true
+
+
+linkerd-viz:
+  linkerdNamespace: linkerd
+  dashboard:
+    enforcedHostRegexp: "linkerd\\.$KUBE_DOMAIN"
+  
+  grafana:
+    externalUrl: "$GRAFANA_URL"
+
+  prometheus:
+    enabled: false
+
+  prometheusUrl: "http://metrics-prometheus-server.metrics.svc.cluster.local:80"

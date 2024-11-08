@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: linkerd-identity-trust-roots
+data:
+  ca-bundle.crt: |
+    {{- .Values.certificate.crt | nindent 4 }}

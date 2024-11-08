@@ -1,0 +1,15 @@
+apiVersion: v2
+name: linkerd
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+dependencies:
+  - name: linkerd-crds
+    version: "1.8.0"
+    repository: "https://helm.linkerd.io/stable"
+  - name: linkerd-control-plane
+    version: "1.16.11"
+    repository: "https://helm.linkerd.io/stable"
+  - name: linkerd-viz
+    version: "30.12.11"
+    repository: "https://helm.linkerd.io/stable"

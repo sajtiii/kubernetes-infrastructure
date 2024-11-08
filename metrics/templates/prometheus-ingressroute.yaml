@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.prometheus.server.ingressRoute.hostname }}`)
+      middlewares:
+        - name: prometheus-ipallowlist
+      services:
+        - name: metrics-prometheus-server
+          port: http
+  tls:
+    secretName: {{ .Values.prometheus.server.ingressRoute.hostname }}-tls

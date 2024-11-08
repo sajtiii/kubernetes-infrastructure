@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-ipallowlist
+spec:
+  ipAllowList:
+    sourceRange:
+    {{- range (index .Values "argo-cd" "global" "allowedIps" | split ",") }}
+      - {{ . }}
+    {{- end }}

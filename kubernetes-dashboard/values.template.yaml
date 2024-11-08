@@ -1,0 +1,7 @@
+hostname: dashboard.$KUBE_DOMAIN
+allowedIps: "$KUBERNETES_DASHBOARD_ALLOWED_IPS"
+
+kubernetes-dashboard:
+  app:
+    ingress:
+      enabled: false

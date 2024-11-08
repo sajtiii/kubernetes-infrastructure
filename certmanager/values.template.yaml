@@ -1,0 +1,18 @@
+letsencrypt:
+  email: "$LETSENCRYPT_EMAIL"
+
+cloudflare:
+  apiToken: "$CLOUDFLARE_TOKEN"
+
+cert-manager:
+  replicaCount: 2
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 50%
+
+  crds:
+    enabled: true
+
+  dns01RecursiveNameserversOnly: true
+  dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"
