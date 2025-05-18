@@ -41,3 +41,4 @@ Before installing, you need to generate linkerd certificates (if you are using t
 
 To get started installing services, simply execute the `installOrUpgrade.sh` script. It will handle the initial installation and the upgrade process of the defined services.  
 
+To view the default administrator password, use the `kubectl -n argo get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d` command.
