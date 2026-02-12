@@ -45,19 +45,6 @@ traefik:
     enabled: true
     allowCrossNamespace: true
 
-  ingressRoute:
-    dashboard:
-      enabled: false
-      entryPoints:
-        - websecure
-      hostname: "traefik.$KUBE_DOMAIN"
-      matchRule: "Host(`traefik.$KUBE_DOMAIN`)"
-      allowedIps: "$TRAEFIK_DASHBOARD_ALLOWED_IPS"
-      middlewares:
-        - name: dashboard-ipallowlist
-      tls:
-        secretName: "traefik.$KUBE_DOMAIN-tls"
-
   metrics:
     prometheus:
       enabled: true
