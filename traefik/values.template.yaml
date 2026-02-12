@@ -47,7 +47,7 @@ traefik:
 
   ingressRoute:
     dashboard:
-      enabled: true
+      enabled: false
       entryPoints:
         - websecure
       hostname: "traefik.$KUBE_DOMAIN"
