@@ -4,9 +4,6 @@ description: A Helm chart for Kubernetes
 type: application
 version: 0.1.0
 dependencies:
-  - name: metrics-server
-    version: "3.12.2"
-    repository: "https://kubernetes-sigs.github.io/metrics-server"
   - name: prometheus
     version: "25.29.0"
     repository: "https://prometheus-community.github.io/helm-charts"
