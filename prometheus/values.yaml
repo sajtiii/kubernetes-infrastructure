@@ -24,7 +24,7 @@ prometheus:
       fsGroup: 0
 
     persistentVolume:
-      storageClass: ""
+      storageClass: "hcloud-volumes"
       size: 10Gi
 
   extraScrapeConfigs: |
