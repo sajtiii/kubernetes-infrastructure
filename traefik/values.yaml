@@ -1,53 +1,47 @@
 traefik:
-  globalArguments:
+  additionalArguments:
     - "--global.checknewversion"
-    # - "--global.sendanonymoususage"
 
   ports:
     web:
+      expose:
+        default: true
       exposedPort: 80
-      redirectTo:
-        port: websecure
-        priority: 65536
+      http:
+        redirections:
+          entryPoint:
+            to: websecure
+            priority: 65536
     websecure:
+      expose:
+        default: true
       exposedPort: 443
 
   deployment:
-    kind: Deployment # or DaemonSet to run on every node
-    replicas: null
+    kind: DaemonSet
+    replicas: 1
     annotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "9100"
 
   autoscaling:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 5
-    metrics:
-      - type: Resource
-        resource:
-          name: cpu
-          target:
-            type: Utilization
-            averageUtilization: 80
+    enabled: false
 
   rbac:
     enabled: true
     namespaced: false
 
-  kubernetesIngress:
-    enabled: true
-
-  kubernetesGateway:
-    enabled: true
-
-  kubernetesCRD:
-    enabled: true
-    allowCrossNamespace: true
+  providers:
+    kubernetesIngress:
+      enabled: true
+    kubernetesGateway:
+      enabled: true
+    kubernetesCRD:
+      enabled: true
+      allowCrossNamespace: true
 
   metrics:
     prometheus:
-      enabled: true
       addEntryPointsLabels: true
-      addRoutesLabels: true
+      addRoutersLabels: true
       addServicesLabels: true
