@@ -14,7 +14,7 @@ spec:
         - name: prometheus-ipallowlist
       {{- end }}
       services:
-        - name: prometheus-prometheus-server
+        - name: prometheus-server
           port: http
   tls:
     secretName: {{ .Values.dashboard.hostname }}-tls
