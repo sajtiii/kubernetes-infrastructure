@@ -24,7 +24,8 @@ prometheus:
       fsGroup: 0
 
     persistentVolume:
-      storageClass: $STORAGE_CLASS
+      storageClass: ""
+      size: 10Gi
 
   extraScrapeConfigs: |
     - job_name: 'linkerd-controller'
