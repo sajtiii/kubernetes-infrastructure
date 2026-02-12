@@ -1,1 +1,3 @@
-kured: {}
+kured:
+  metrics:
+    create: true
