@@ -1,13 +1,9 @@
-metrics-server:
-  args:
-    - --kubelet-insecure-tls
-
 prometheus:
   alertmanager:
-    enabled: false
+    enabled: true
 
   server:
-    retention: 1d
+    retention: 14d
 
     global:
       scrape_interval: 10s
