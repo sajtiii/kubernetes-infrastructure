@@ -1,3 +1,4 @@
+{{- if .Values.dashboard.hostname }}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -7,12 +8,15 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`{{ .Values.hostname }}`)
+      match: Host(`{{ .Values.dashboard.hostname }}`)
       priority: 10
+      {{- if .Values.dashboard.allowedIps }}
       middlewares:
         - name: viz-ipallowlist
+      {{- end }}
       services:
         - name: web
           port: http
   tls:
-    secretName: {{ .Values.hostname }}-tls
+    secretName: {{ .Values.dashboard.hostname }}-tls
+{{- end -}}

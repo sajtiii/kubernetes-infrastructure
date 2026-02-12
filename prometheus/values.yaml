@@ -1,3 +1,7 @@
+dashboard:
+  hostname: ""
+  allowedIps: []
+
 prometheus:
   alertmanager:
     enabled: true
@@ -13,17 +17,13 @@ prometheus:
     ingress:
       enabled: false
 
-    ingressRoute:
-      hostname: "prometheus.$KUBE_DOMAIN"
-      allowedIps: "$PROMETHEUS_ALLOWED_IPS"
-
     securityContext:
       runAsUser: 0
       runAsNonRoot: false
       runAsGroup: 0
       fsGroup: 0
 
-    persisrentVolume:
+    persistentVolume:
       storageClass: $STORAGE_CLASS
 
   extraScrapeConfigs: |

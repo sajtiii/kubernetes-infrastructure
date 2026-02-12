@@ -1,11 +1,13 @@
+{{- if .Values.dashboard.hostname }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ .Values.hostname }}-tls
+  name: {{ .Values.dashboard.hostname }}-tls
 spec:
-  secretName: {{ .Values.hostname }}-tls
+  secretName: {{ .Values.dashboard.hostname }}-tls
   dnsNames:
-    - {{ .Values.hostname }}
+    - {{ .Values.dashboard.hostname }}
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
+{{- end -}}

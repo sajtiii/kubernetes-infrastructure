@@ -1,13 +1,16 @@
-traefik:
-  additionalArguments:
-    - "--global.checknewversion"
+dashboard:
+  hostname: ""
+  allowedIps: []
 
+traefik:
   ports:
     web:
       expose:
         default: true
       exposedPort: 80
       http:
+        forwardedHeaders:
+          insecure: true
         redirections:
           entryPoint:
             to: websecure
@@ -16,6 +19,9 @@ traefik:
       expose:
         default: true
       exposedPort: 443
+      http:
+        forwardedHeaders:
+          insecure: true
 
   deployment:
     kind: DaemonSet

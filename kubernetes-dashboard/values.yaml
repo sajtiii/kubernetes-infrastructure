@@ -1,0 +1,8 @@
+dashboard:
+  hostname: ""
+  allowedIps: []
+
+kubernetes-dashboard:
+  app:
+    ingress:
+      enabled: false

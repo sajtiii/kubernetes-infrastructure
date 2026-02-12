@@ -2,7 +2,8 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: dashboard-ipallowlist
+  name: argocd-dashboard-ipallowlist
+  namespace: argo
 spec:
   ipAllowList:
     sourceRange:

@@ -1,6 +1,6 @@
 dashboard:
-  hostname: vault.$KUBE_DOMAIN
-  allowedIps: $VAULT_UI_ALLOWED_IPS
+  hostname: ""
+  allowedIps: []
 
 vault:
   webhook:

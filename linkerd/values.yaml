@@ -1,5 +1,6 @@
-hostname: linkerd.$KUBE_DOMAIN
-allowedIps: $LINKERD_ALLOWED_IPS
+dashboard:
+  hostname: ""
+  allowedIps: []
 
 certificate:
   crt: |
