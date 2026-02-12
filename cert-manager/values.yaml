@@ -5,7 +5,7 @@ cloudflare:
   apiToken: "" # Has to be specified
 
 cert-manager:
-  replicaCount: 2
+  replicaCount: 1
 
   podDisruptionBudget:
     enabled: true
