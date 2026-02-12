@@ -33,10 +33,5 @@ Session.vim
 
 # Chart dependencies
 **/charts/*.tgz
-*/values.yaml
 
 .history
-
-.env
-*.crt
-*.key

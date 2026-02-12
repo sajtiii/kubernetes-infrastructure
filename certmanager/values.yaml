@@ -1,8 +1,8 @@
 letsencrypt:
-  email: "$LETSENCRYPT_EMAIL"
+  email: "" # Has to be specified
 
 cloudflare:
-  apiToken: "$CLOUDFLARE_TOKEN"
+  apiToken: "" # Has to be specified
 
 cert-manager:
   replicaCount: 2

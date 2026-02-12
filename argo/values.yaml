@@ -3,8 +3,7 @@ argo-cd:
     install: true
 
   global:
-    domain: argo.$KUBE_DOMAIN
-    allowedIps: $ARGO_ALLOWED_IPS
+    domain: "" # Has to be specified
     addPrometheusAnnotations: true
       
   configs:
