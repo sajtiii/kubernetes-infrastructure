@@ -1,3 +1,8 @@
 kured:
   metrics:
+    create: false
+  service:
     create: true
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8080"
