@@ -5,6 +5,8 @@ dashboard:
 prometheus:
   alertmanager:
     enabled: true
+    persistence:
+      enabled: false
 
   server:
     retention: 14d
@@ -13,14 +15,6 @@ prometheus:
       scrape_interval: 10s
       scrape_timeout: 10s
       evaluation_interval: 10s
-      external_labels:
-        origin_prometheus: prometheus01
-
-    remoteWrite:
-      - url: https://prometheus-prod-39-prod-eu-north-0.grafana.net/api/prom/push
-        basic_auth:
-          username: 1933616
-          password: "" # Has to be specified
 
     ingress:
       enabled: false
@@ -32,8 +26,7 @@ prometheus:
       fsGroup: 0
 
     persistentVolume:
-      storageClass: "hcloud-volumes"
-      size: 10Gi
+      enabled: false
 
   extraScrapeConfigs: |
     - job_name: 'linkerd-controller'
