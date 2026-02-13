@@ -1,1 +1,1 @@
-{{- include "ingressroute" (dict "name" "prometheus" "hostname" .Values.dashboard.hostname "allowedIps" .Values.dashboard.allowedIps "serviceName" "prometheus-prometheus-server" "servicePort" "http") -}}
+{{- include "ingressroute" (dict "name" "prometheus" "hostname" .Values.dashboard.hostname "allowedIps" .Values.dashboard.allowedIps "serviceName" "prometheus-server" "servicePort" "http") -}}
