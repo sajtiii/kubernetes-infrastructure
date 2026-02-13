@@ -2,6 +2,10 @@ dashboard:
   hostname: ""
   allowedIps: []
 
+alertmanager:
+  hostname: ""
+  allowedIps: []
+
 prometheus:
   alertmanager:
     enabled: true

@@ -1,0 +1,1 @@
+{{- include "certificate" (dict "hostname" .Values.alertmanager.hostname) -}}

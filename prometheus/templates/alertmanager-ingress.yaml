@@ -1,0 +1,1 @@
+{{- include "ingressroute" (dict "name" "alertmanager" "hostname" .Values.alertmanager.hostname "allowedIps" .Values.alertmanager.allowedIps "serviceName" "prometheus-alertmanager" "servicePort" "http") -}}
