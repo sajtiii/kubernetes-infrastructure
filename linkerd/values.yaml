@@ -3,10 +3,8 @@ dashboard:
   allowedIps: []
 
 certificate:
-  crt: |
-$LINKERD_CA_CRT
-  key: |
-$LINKERD_CA_KEY
+  crt: "" # Must be overwritten
+  key: "" # Must be overwritten
 
 linkerd-control-plane:
   identity:
@@ -61,12 +59,12 @@ linkerd-control-plane:
 linkerd-viz:
   linkerdNamespace: linkerd
   dashboard:
-    enforcedHostRegexp: "linkerd\\.$KUBE_DOMAIN"
+    enforcedHostRegexp: "" # Should be overwritten
   
   grafana:
-    externalUrl: "$GRAFANA_URL"
+    externalUrl: "" # Should be overwritten
 
   prometheus:
     enabled: false
 
-  prometheusUrl: "http://metrics-prometheus-server.metrics.svc.cluster.local:80"
+  prometheusUrl: "http://prometheus-server.monitoring.svc.cluster.local:80"
