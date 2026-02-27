@@ -13,7 +13,7 @@ prometheus:
       enabled: false
 
   server:
-    retention: 14d
+    retention: 3d
 
     global:
       scrape_interval: 10s
