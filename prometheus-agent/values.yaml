@@ -18,6 +18,4 @@ prometheus:
     persistentVolume:
       enabled: false
 
-    remoteWrite:
-      - url: "" # Should be set to the URL of the Prometheus server that will receive the data from this agent
-        remoteTimeout: 5s
+    remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
