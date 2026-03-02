@@ -1,0 +1,6 @@
+dependencies:
+- name: system-upgrade-controller
+  repository: https://sajtiii.github.io/helm-charts
+  version: 0.1.0
+digest: sha256:ab83a25d46bc6f472ea4cd45f4a775e35f47af963a7c50d65731addc1e37be03
+generated: "2026-03-02T19:04:09.661146212+01:00"
