@@ -1,0 +1,23 @@
+prometheus:
+  alertmanager:
+    enabled: false
+
+  pushgateway:
+    enabled: false
+
+  server:
+    agentMode: true
+
+    retention: 1h
+
+    global:
+      scrape_interval: 10s
+      scrape_timeout: 10s
+      evaluation_interval: 10s
+
+    persistentVolume:
+      enabled: false
+
+    remoteWrite:
+      - url: "" # Should be set to the URL of the Prometheus server that will receive the data from this agent
+        remoteTimeout: 5s
