@@ -1,1 +1,0 @@
-{{- include "ipallowlist" (dict "name" "alertmanager" "allowedIps" .Values.alertmanager.allowedIps) -}}
