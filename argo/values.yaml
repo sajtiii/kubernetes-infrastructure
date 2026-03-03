@@ -39,12 +39,12 @@ argo-cd:
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 15m
-        memory: 16Mi
       limits:
         cpu: 100m
         memory: 32Mi
+      requests:
+        cpu: 15m
+        memory: 16Mi
 
   redis-ha:
     enabled: false
@@ -57,70 +57,70 @@ argo-cd:
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
       limits:
         cpu: 500m
-        memory: 768Mi
+        memory: 1024Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
 
   server:
     replicas: 1
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 25m
-        memory: 80Mi
       limits:
         cpu: 150m
         memory: 192Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
 
   repoServer:
     replicas: 1
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 25m
-        memory: 64Mi
       limits:
         cpu: 200m
-        memory: 192Mi
+        memory: 256Mi
+      requests:
+        cpu: 15m
+        memory: 128Mi
 
   dex:
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 10m
-        memory: 40Mi
       limits:
         cpu: 50m
-        memory: 80Mi
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
 
   applicationSet:
     replicas: 1
     metrics:
       enabled: true
     resources:
-      requests:
-        cpu: 10m
-        memory: 32Mi
       limits:
         cpu: 50m
+        memory: 96Mi
+      requests:
+        cpu: 10m
         memory: 64Mi
 
   notifications:
     metrics:
       enabled: true
     resources:
+      limits:
+        cpu: 50m
+        memory: 48Mi
       requests:
         cpu: 10m
         memory: 32Mi
-      limits:
-        cpu: 50m
-        memory: 64Mi
 
 
 argocd-image-updater:
@@ -130,12 +130,12 @@ argocd-image-updater:
   config:
     registries: []
   resources:
-    requests:
-      cpu: 10m
-      memory: 36Mi
     limits:
       cpu: 50m
-      memory: 72Mi
+      memory: 64Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
 
 argo-rollouts:
   controller:
@@ -146,9 +146,9 @@ argo-rollouts:
       - "--traefik-api-group=traefik.io"
       - "--traefik-api-version=traefik.io/v1alpha1"
     resources:
-      requests:
-        cpu: 10m
-        memory: 48Mi
       limits:
         cpu: 100m
         memory: 96Mi
+      requests:
+        cpu: 10m
+        memory: 48Mi

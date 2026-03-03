@@ -8,12 +8,12 @@ cert-manager:
   replicaCount: 1
 
   resources:
-    requests:
-      cpu: 10m
-      memory: 40Mi
     limits:
       cpu: 50m
-      memory: 80Mi
+      memory: 64Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
 
   crds:
     enabled: true
@@ -21,22 +21,22 @@ cert-manager:
   webhook:
     replicaCount: 1
     resources:
-      requests:
-        cpu: 10m
-        memory: 32Mi
       limits:
         cpu: 50m
         memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
 
   cainjector:
     enabled: false
     resources:
-      requests:
-        cpu: 10m
-        memory: 32Mi
       limits:
         cpu: 100m
         memory: 256Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
 
   startupapicheck:
     enabled: true
