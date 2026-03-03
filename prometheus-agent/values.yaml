@@ -12,8 +12,6 @@ prometheus:
   server:
     agentMode: true
 
-    retention: 1h
-
     global:
       scrape_interval: 10s
       scrape_timeout: 10s
@@ -24,11 +22,17 @@ prometheus:
 
     remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
 
+    extraFlags:
+      - storage.agent.wal-compression
+
+    extraArgs:
+      storage.agent.retention.max-time: 30m
+
     resources:
       limits:
         cpu: 500m
-        memory: 512Mi
+        memory: 256Mi
       requests:
         cpu: 100m
-        memory: 256Mi
+        memory: 128Mi
 

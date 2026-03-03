@@ -10,10 +10,10 @@ cert-manager:
   resources:
     requests:
       cpu: 10m
-      memory: 32Mi
+      memory: 64Mi
     limits:
       cpu: 100m
-      memory: 256Mi
+      memory: 128Mi
 
   crds:
     enabled: true
@@ -39,7 +39,7 @@ cert-manager:
         memory: 256Mi
 
   startupapicheck:
-    enabled: false
+    enabled: true
 
   dns01RecursiveNameserversOnly: true
   dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"
