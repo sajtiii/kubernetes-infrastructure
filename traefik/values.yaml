@@ -29,6 +29,8 @@ traefik:
     websecure:
       hostPort: 443
 
+  priorityClassName: traefik-high-priority
+
   deployment:
     kind: DaemonSet
     replicas: 1
@@ -44,8 +46,8 @@ traefik:
 
   resources:
     limits:
-      cpu: 200m
-      memory: 192Mi
+      cpu: 100m
+      memory: 128Mi
     requests:
       cpu: 50m
       memory: 64Mi

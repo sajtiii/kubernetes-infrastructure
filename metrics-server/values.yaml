@@ -4,8 +4,8 @@ metrics-server:
     - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
   resources:
     requests:
-      cpu: 25m
+      cpu: 10m
       memory: 32Mi
     limits:
-      cpu: 100m
-      memory: 96Mi
+      cpu: 50m
+      memory: 64Mi

@@ -40,11 +40,11 @@ argo-cd:
       enabled: true
     resources:
       requests:
-        cpu: 50m
+        cpu: 15m
         memory: 16Mi
       limits:
         cpu: 100m
-        memory: 48Mi
+        memory: 32Mi
 
   redis-ha:
     enabled: false
@@ -58,7 +58,7 @@ argo-cd:
       enabled: true
     resources:
       requests:
-        cpu: 50m
+        cpu: 100m
         memory: 256Mi
       limits:
         cpu: 500m
@@ -71,10 +71,10 @@ argo-cd:
     resources:
       requests:
         cpu: 25m
-        memory: 96Mi
+        memory: 80Mi
       limits:
-        cpu: 200m
-        memory: 256Mi
+        cpu: 150m
+        memory: 192Mi
 
   repoServer:
     replicas: 1
@@ -83,10 +83,10 @@ argo-cd:
     resources:
       requests:
         cpu: 25m
-        memory: 128Mi
+        memory: 64Mi
       limits:
         cpu: 200m
-        memory: 256Mi
+        memory: 192Mi
 
   dex:
     metrics:
@@ -94,10 +94,10 @@ argo-cd:
     resources:
       requests:
         cpu: 10m
-        memory: 48Mi
+        memory: 40Mi
       limits:
         cpu: 50m
-        memory: 96Mi
+        memory: 80Mi
 
   applicationSet:
     replicas: 1
@@ -105,11 +105,11 @@ argo-cd:
       enabled: true
     resources:
       requests:
-        cpu: 25m
-        memory: 48Mi
+        cpu: 10m
+        memory: 32Mi
       limits:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 50m
+        memory: 64Mi
 
   notifications:
     metrics:
@@ -117,10 +117,10 @@ argo-cd:
     resources:
       requests:
         cpu: 10m
-        memory: 48Mi
+        memory: 32Mi
       limits:
-        cpu: 100m
-        memory: 96Mi
+        cpu: 50m
+        memory: 64Mi
 
 
 argocd-image-updater:
@@ -132,10 +132,10 @@ argocd-image-updater:
   resources:
     requests:
       cpu: 10m
-      memory: 32Mi
+      memory: 36Mi
     limits:
-      cpu: 100m
-      memory: 96Mi
+      cpu: 50m
+      memory: 72Mi
 
 argo-rollouts:
   controller:
@@ -147,8 +147,8 @@ argo-rollouts:
       - "--traefik-api-version=traefik.io/v1alpha1"
     resources:
       requests:
-        cpu: 25m
+        cpu: 10m
         memory: 48Mi
       limits:
-        cpu: 200m
-        memory: 128Mi
+        cpu: 100m
+        memory: 96Mi
