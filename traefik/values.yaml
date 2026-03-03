@@ -23,6 +23,12 @@ traefik:
         forwardedHeaders:
           insecure: true
 
+  service:
+    type: ClusterIP
+  ports:
+    websecure:
+      hostPort: 443
+
   deployment:
     kind: DaemonSet
     replicas: 1
