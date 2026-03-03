@@ -124,6 +124,9 @@ argo-cd:
 
 
 argocd-image-updater:
+  replicaCount: 1
+  metrics:
+    enabled: true
   config:
     registries: []
   resources:
@@ -136,6 +139,9 @@ argocd-image-updater:
 
 argo-rollouts:
   controller:
+    replicas: 1
+    metrics:
+      enabled: true
     extraArgs:
       - "--traefik-api-group=traefik.io"
       - "--traefik-api-version=traefik.io/v1alpha1"
