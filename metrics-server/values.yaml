@@ -3,10 +3,12 @@ metrics-server:
     - --kubelet-insecure-tls
   livenessProbe:
     initialDelaySeconds: 30
+  readinessProbe:
+    initialDelaySeconds: 30
   resources:
     requests:
       cpu: 10m
       memory: 48Mi
     limits:
-      cpu: 25m
+      cpu: 100m
       memory: 64Mi
