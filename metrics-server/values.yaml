@@ -1,6 +1,7 @@
 metrics-server:
   args:
     - --kubelet-insecure-tls
+  revisionHistoryLimit: 2
   livenessProbe:
     initialDelaySeconds: 30
   readinessProbe:
