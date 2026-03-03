@@ -1,4 +1,8 @@
 prometheus:
+  serverFiles:
+    prometheus.yml:
+      rule_files: []
+
   alertmanager:
     enabled: false
 
@@ -21,9 +25,8 @@ prometheus:
     remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
 
     defaultFlagsOverride:
-      - --enable-feature=agent
+      - --agent
       - --config.file=/etc/config/prometheus.yml
-      - --storage.agent.path=/data
       - --storage.agent.wal-compression
       - --storage.agent.retention.max-time=30m
       - --web.console.libraries=/etc/prometheus/console_libraries
