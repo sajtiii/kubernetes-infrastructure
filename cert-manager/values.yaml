@@ -10,5 +10,11 @@ cert-manager:
   crds:
     enabled: true
 
+  webhook:
+    replicaCount: 0
+
+  cainjector:
+    enabled: true
+
   dns01RecursiveNameserversOnly: true
   dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"
