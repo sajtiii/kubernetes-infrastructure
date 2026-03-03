@@ -10,8 +10,6 @@ prometheus:
       enabled: false
 
   server:
-    agentMode: true
-
     global:
       scrape_interval: 10s
       scrape_timeout: 10s
@@ -22,11 +20,15 @@ prometheus:
 
     remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
 
-    extraFlags:
-      - storage.agent.wal-compression
-
-    extraArgs:
-      storage.agent.retention.max-time: 30m
+    defaultFlagsOverride:
+      - --enable-feature=agent
+      - --config.file=/etc/config/prometheus.yml
+      - --storage.agent.path=/data
+      - --storage.agent.wal-compression
+      - --storage.agent.retention.max-time=30m
+      - --web.console.libraries=/etc/prometheus/console_libraries
+      - --web.console.templates=/etc/prometheus/consoles
+      - --web.enable-lifecycle
 
     resources:
       limits:
