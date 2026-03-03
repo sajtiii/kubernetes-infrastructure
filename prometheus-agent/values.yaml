@@ -14,20 +14,23 @@ prometheus:
     resources:
       requests:
         cpu: 10m
-        memory: 40Mi
+        memory: 64Mi
       limits:
-        cpu: 50m
-        memory: 48Mi
+        cpu: 25m
+        memory: 96Mi
 
   prometheus-node-exporter:
     enabled: true
     resources:
       requests:
         cpu: 10m
-        memory: 20Mi
+        memory: 32Mi
       limits:
         cpu: 25m
-        memory: 24Mi
+        memory: 48Mi
+
+  prometheus-pushgateway:
+    enabled: true
 
   configmapReload:
     prometheus:
@@ -58,7 +61,7 @@ prometheus:
 
     extraEnv:
       - name: GOGC
-        value: "50"
+        value: "75"
 
     resources:
       limits:
