@@ -12,7 +12,7 @@ spec:
       userSecretRef:
         name: backup-repo-credentials
         key: userUsername
-      passwordSecretRef:
+      passwordSecretReg:
         name: backup-repo-credentials
         key: userPassword
   backup:
