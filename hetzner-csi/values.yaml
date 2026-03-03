@@ -1,1 +1,63 @@
 hetzner_token: ""
+
+hcloud-csi:
+  controller:
+    resources:
+      csiAttacher:
+        requests:
+          cpu: 10m
+          memory: 20Mi
+        limits:
+          cpu: 50m
+          memory: 50Mi
+      csiResizer:
+        requests:
+          cpu: 10m
+          memory: 20Mi
+        limits:
+          cpu: 50m
+          memory: 50Mi
+      csiProvisioner:
+        requests:
+          cpu: 10m
+          memory: 20Mi
+        limits:
+          cpu: 50m
+          memory: 50Mi
+      livenessProbe:
+        requests:
+          cpu: 5m
+          memory: 10Mi
+        limits:
+          cpu: 20m
+          memory: 20Mi
+      hcloudCSIDriver:
+        requests:
+          cpu: 10m
+          memory: 20Mi
+        limits:
+          cpu: 50m
+          memory: 50Mi
+  node:
+    resources:
+      csiNodeDriverRegistrar:
+        requests:
+          cpu: 5m
+          memory: 10Mi
+        limits:
+          cpu: 20m
+          memory: 20Mi
+      livenessProbe:
+        requests:
+          cpu: 5m
+          memory: 10Mi
+        limits:
+          cpu: 20m
+          memory: 20Mi
+      hcloudCSIDriver:
+        requests:
+          cpu: 10m
+          memory: 20Mi
+        limits:
+          cpu: 50m
+          memory: 50Mi

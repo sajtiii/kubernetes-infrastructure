@@ -7,14 +7,36 @@ cloudflare:
 cert-manager:
   replicaCount: 1
 
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+
   crds:
     enabled: true
 
   webhook:
     replicaCount: 0
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 50m
+        memory: 64Mi
 
   cainjector:
     enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 256Mi
 
   dns01RecursiveNameserversOnly: true
   dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"

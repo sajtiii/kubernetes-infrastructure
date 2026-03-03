@@ -38,6 +38,13 @@ argo-cd:
   redis:
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+      limits:
+        cpu: 200m
+        memory: 128Mi
 
   redis-ha:
     enabled: false
@@ -49,41 +56,93 @@ argo-cd:
     replicas: 1
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
 
   server:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
+    replicas: 1
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
 
   repoServer:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
+    replicas: 1
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
 
   dex:
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 50m
+        memory: 128Mi
 
   applicationSet:
-    replicas: 2
+    replicas: 1
     metrics:
       enabled: true
-  
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
   notifications:
     metrics:
       enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
 
 
 argocd-image-updater:
   config:
     registries: []
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 argo-rollouts:
   controller:
     extraArgs:
       - "--traefik-api-group=traefik.io"
       - "--traefik-api-version=traefik.io/v1alpha1"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
