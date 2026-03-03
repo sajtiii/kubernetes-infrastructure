@@ -9,6 +9,12 @@ prometheus:
   pushgateway:
     enabled: false
 
+  kube-state-metrics:
+    enabled: true
+  
+  prometheus-node-exporter:
+    enabled: true
+
   configmapReload:
     prometheus:
       enabled: false
