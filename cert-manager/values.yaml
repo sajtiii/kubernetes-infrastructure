@@ -29,7 +29,7 @@ cert-manager:
         memory: 32Mi
 
   cainjector:
-    enabled: false
+    enabled: true
     resources:
       limits:
         cpu: 100m
