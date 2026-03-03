@@ -19,3 +19,15 @@ prometheus:
       enabled: false
 
     remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
+
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+    configMapReload:
+      prometheus:
+        enabled: false
