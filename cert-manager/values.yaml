@@ -29,7 +29,7 @@ cert-manager:
         memory: 64Mi
 
   cainjector:
-    enabled: true
+    enabled: false
     resources:
       requests:
         cpu: 10m
@@ -37,6 +37,9 @@ cert-manager:
       limits:
         cpu: 100m
         memory: 256Mi
+
+  startupapicheck:
+    enabled: false
 
   dns01RecursiveNameserversOnly: true
   dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"
