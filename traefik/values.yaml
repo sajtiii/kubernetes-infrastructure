@@ -42,6 +42,14 @@ traefik:
       maxUnavailable: 1
       maxSurge: 0
 
+  resources:
+    limits:
+      cpu: 200m
+      memory: 192Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
   autoscaling:
     enabled: false
 
