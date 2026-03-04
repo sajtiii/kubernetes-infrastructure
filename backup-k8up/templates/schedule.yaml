@@ -28,4 +28,5 @@ spec:
     schedule: '@daily-random'
     retention:
       {{ $.Values.backup.retention | toYaml | nindent 8 }}
+  promUrl: {{ $.Values.backup.prometheus.url | quote }}
 {{- end }}
