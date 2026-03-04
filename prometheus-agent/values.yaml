@@ -59,7 +59,7 @@ prometheus:
       - --web.console.templates=/etc/prometheus/consoles
       - --web.enable-lifecycle
 
-    extraEnvs:
+    env:
       - name: GOGC
         value: "75"
       - name: GOMEMLIMIT
