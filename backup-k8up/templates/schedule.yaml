@@ -20,8 +20,8 @@ spec:
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
   check:
-    schedule: '0 5 * * 1'
+    schedule: '@weekly-random'
   prune:
-    schedule: '0 5 * * */2'
+    schedule: '@daily-random'
     retention:
       {{ .Values.backup.retention | toYaml | nindent 8 }}

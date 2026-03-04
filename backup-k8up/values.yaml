@@ -1,5 +1,5 @@
 backup:
-  schedule: '0 22 * * *'
+  schedule: '@daily-random'
   repo:
     url: ""
     username: ""
