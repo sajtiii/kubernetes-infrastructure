@@ -1,5 +1,7 @@
 backup:
   schedule: '@daily-random'
+  namespaces:
+    - default
   repo:
     url: ""
     username: ""
