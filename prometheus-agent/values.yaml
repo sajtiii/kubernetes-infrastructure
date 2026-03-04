@@ -59,7 +59,7 @@ prometheus:
       - --web.console.templates=/etc/prometheus/consoles
       - --web.enable-lifecycle
 
-    extraEnv:
+    extraEnvs:
       - name: GOGC
         value: "75"
       - name: GOMEMLIMIT
@@ -72,4 +72,3 @@ prometheus:
       requests:
         cpu: 50m
         memory: 64Mi
-
