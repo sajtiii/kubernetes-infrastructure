@@ -22,11 +22,12 @@ spec:
     schedule: {{ $.Values.backup.schedule | quote }}
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
+    promUrl: {{ $.Values.backup.prometheus.url | quote }}
   check:
     schedule: '@weekly-random'
+    promUrl: {{ $.Values.backup.prometheus.url | quote }}
   prune:
     schedule: '@daily-random'
     retention:
       {{ $.Values.backup.retention | toYaml | nindent 8 }}
-  promUrl: {{ $.Values.backup.prometheus.url | quote }}
 {{- end }}
