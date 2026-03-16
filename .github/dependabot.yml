@@ -1,0 +1,22 @@
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "helm"
+    directories:
+      - "/argo"
+      - "/argo-dashboard"
+      - "/backup-k8up"
+      - "/cert-manager"
+      - "/hetzner-csi"
+      - "/k3s-automated-upgrades"
+      - "/kured"
+      - "/metrics-server"
+      - "/prometheus-agent"
+      - "/traefik"
+    schedule:
+      interval: "weekly"
