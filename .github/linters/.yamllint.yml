@@ -1,0 +1,26 @@
+---
+extends: default
+
+rules:
+  # Helm values files often have long lines
+  line-length:
+    max: 150
+    level: warning
+
+  # Allow both --- document start styles
+  document-start:
+    present: false
+
+  # Helm values commonly use truthy values like 'yes'/'no'
+  truthy:
+    allowed-values: ["true", "false", "yes", "no", "on", "off"]
+    check-keys: false
+
+  # Allow comments without a space (e.g. #noqa style)
+  comments:
+    min-spaces-from-content: 1
+
+  # Braces used in some values
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1

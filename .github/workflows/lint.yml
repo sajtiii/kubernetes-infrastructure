@@ -1,0 +1,35 @@
+name: Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    name: Super Linter
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Super Linter
+        uses: super-linter/super-linter@v7
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
+
+          # Enable only relevant linters for a Helm/Kubernetes repo
+          VALIDATE_YAML: true
+          VALIDATE_HELM: true
+
+          # Exclude Helm template files from YAML linting — they contain
+          # Go template syntax ({{ }}) that is not valid YAML
+          FILTER_REGEX_EXCLUDE: .*/templates/.*
+
+          YAML_CONFIG_FILE: .yamllint.yml

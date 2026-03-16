@@ -1,5 +1,5 @@
 backup:
-  schedule: '@daily-random'
+  schedule: "@daily-random"
   namespaces:
     - default
   repo:
