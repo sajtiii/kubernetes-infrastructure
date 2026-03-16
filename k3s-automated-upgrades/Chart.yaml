@@ -1,0 +1,9 @@
+apiVersion: v2
+name: k3s-automated-upgrades
+description: Automated k3s upgrades via system-upgrade-controller
+type: application
+version: 0.1.0
+dependencies:
+  - name: system-upgrade-controller
+    version: "0.*"
+    repository: "https://sajtiii.github.io/helm-charts"

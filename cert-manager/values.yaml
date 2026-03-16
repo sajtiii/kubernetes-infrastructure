@@ -1,0 +1,45 @@
+letsencrypt:
+  email: "" # Has to be specified
+
+cloudflare:
+  apiToken: "" # Has to be specified
+
+cert-manager:
+  replicaCount: 1
+
+  resources:
+    limits:
+      cpu: 50m
+      memory: 64Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
+
+  crds:
+    enabled: true
+
+  webhook:
+    replicaCount: 1
+    resources:
+      limits:
+        cpu: 50m
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
+
+  cainjector:
+    enabled: true
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
+
+  startupapicheck:
+    enabled: true
+
+  dns01RecursiveNameserversOnly: true
+  dns01RecursiveNameservers: "1.1.1.1:53,8.8.8.8:53"

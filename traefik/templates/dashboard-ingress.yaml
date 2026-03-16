@@ -1,0 +1,21 @@
+{{- if .Values.dashboard.hostname }}
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{ .Values.dashboard.hostname }}`)
+      kind: Rule
+      {{- if .Values.dashboard.allowedIps }}
+      middlewares:
+        - name: traefik-dashboard-ipallowlist
+      {{- end }}
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: {{ .Values.dashboard.hostname }}-tls
+{{- end -}}

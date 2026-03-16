@@ -1,0 +1,89 @@
+prometheus:
+  serverFiles:
+    prometheus.yml:
+      rule_files: []
+
+  # Override only the cadvisor scrape config to add metric filtering;
+  # all other scrape configs come from the chart defaults.
+  scrapeConfigs:
+    kubernetes-nodes-cadvisor:
+      metric_relabel_configs:
+        - source_labels: [__name__]
+          regex: >-
+            container_cpu_(usage_seconds_total|cfs_periods_total|cfs_throttled_periods_total)|
+            container_memory_(working_set_bytes|usage_bytes|rss|cache|swap)|
+            container_network_(receive|transmit)_(bytes|packets_dropped)_total|
+            container_fs_(usage|limit|reads_bytes|writes_bytes).*|
+            container_(start_time_seconds|oom_events_total|spec_memory_limit_bytes|spec_cpu_quota|spec_cpu_period)|
+            machine_(cpu_cores|memory_bytes)
+          action: keep
+
+  alertmanager:
+    enabled: false
+
+  pushgateway:
+    enabled: false
+
+  kube-state-metrics:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 25m
+        memory: 96Mi
+
+  prometheus-node-exporter:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 25m
+        memory: 48Mi
+
+  prometheus-pushgateway:
+    enabled: true
+
+  configmapReload:
+    prometheus:
+      enabled: false
+
+  server:
+    revisionHistoryLimit: 1
+
+    global:
+      scrape_interval: 60s
+      scrape_timeout: 10s
+      evaluation_interval: 60s
+
+    persistentVolume:
+      enabled: false
+
+    remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
+
+    defaultFlagsOverride:
+      - --agent
+      - --config.file=/etc/config/prometheus.yml
+      - --storage.agent.wal-compression
+      - --storage.agent.retention.max-time=15m
+      - --storage.agent.wal-truncate-frequency=5m
+      - --web.console.libraries=/etc/prometheus/console_libraries
+      - --web.console.templates=/etc/prometheus/consoles
+      - --web.enable-lifecycle
+
+    env:
+      - name: GOGC
+        value: "75"
+      - name: GOMEMLIMIT
+        value: "230MiB"
+
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi

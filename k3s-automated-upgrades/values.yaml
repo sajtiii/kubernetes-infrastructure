@@ -1,0 +1,8 @@
+system-upgrade-controller:
+  upgrade:
+    window:
+      days:
+        - monday
+      startTime: "04:00"
+      endTime: "05:00"
+      timeZone: UTC

@@ -1,0 +1,33 @@
+{{- range .Values.backup.namespaces }}
+---
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: k3s-backup
+  namespace: {{ . }}
+spec:
+  backend:
+    repoPasswordSecretRef:
+      name: backup-repo-credentials
+      key: repoPassword
+    rest:
+      url: {{ $.Values.backup.repo.url | quote }}
+      userSecretRef:
+        name: backup-repo-credentials
+        key: userUsername
+      passwordSecretReg:
+        name: backup-repo-credentials
+        key: userPassword
+  backup:
+    schedule: {{ $.Values.backup.schedule | quote }}
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2
+    promURL: {{ $.Values.backup.prometheus.url | quote }}
+  check:
+    schedule: '@weekly-random'
+    promURL: {{ $.Values.backup.prometheus.url | quote }}
+  prune:
+    schedule: '@daily-random'
+    retention:
+      {{ $.Values.backup.retention | toYaml | nindent 8 }}
+{{- end }}

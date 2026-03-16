@@ -1,0 +1,7 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: traefik-high-priority
+value: 900000000
+globalDefault: false
+description: "High priority class for Traefik ingress controller to ensure it stays running."

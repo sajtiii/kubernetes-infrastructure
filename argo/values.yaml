@@ -1,0 +1,184 @@
+argo-cd:
+  crds:
+    install: true
+
+  global:
+    domain: "" # Has to be specified
+    addPrometheusAnnotations: true
+      
+  configs:
+    params:
+      server.insecure: true
+
+    # cm:
+    #   oidc.config: |
+    #     name: OPENID
+    #     issuer: https://issuer-url
+    #     clientID: ""
+    #     clientSecret: ""
+    #     requestedScopes: ["openid", "profile", "email", "groups"]
+
+    rbac:
+      # -- OIDC scopes to examine during rbac enforcement (in addition to `sub` scope).
+      # The scope value can be a string, or a list of strings.
+      scopes: "[groups]"
+      policy.csv: ''
+      # Policy rules are in the form:
+      #  p, subject, resource, action, object, effect
+      # Role definitions and bindings are in the form:
+      #  g, subject, inherited-subject
+      # policy.csv: |
+      #   p, role:org-admin, applications, *, */*, allow
+      #   p, role:org-admin, clusters, get, *, allow
+      #   p, role:org-admin, repositories, *, *, allow
+      #   p, role:org-admin, logs, get, *, allow
+      #   p, role:org-admin, exec, create, */*, allow
+      #   g, your-github-org:your-team, role:org-admin
+    
+  redis:
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 100m
+        memory: 32Mi
+      requests:
+        cpu: 15m
+        memory: 16Mi
+
+  redis-ha:
+    enabled: false
+    haproxy:
+      metrics:
+        enabled: true
+
+  controller:
+    replicas: 1
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1024Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+  server:
+    replicas: 1
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 150m
+        memory: 192Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+
+  repoServer:
+    replicas: 1
+    metrics:
+      enabled: true
+    resources:
+      requests:
+        cpu: 15m
+        memory: 128Mi
+
+  dex:
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 50m
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
+
+  applicationSet:
+    replicas: 1
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 50m
+        memory: 96Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+
+  notifications:
+    metrics:
+      enabled: true
+    resources:
+      limits:
+        cpu: 50m
+        memory: 48Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
+
+  extraObjects:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: argocd-imageupdater-manager
+        namespace: argo
+      rules:
+        - apiGroups:
+            - argocd-image-updater.argoproj.io
+          resources:
+            - imageupdaters
+          verbs:
+            - get
+            - list
+            - watch
+            - create
+            - update
+            - patch
+            - delete
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: argocd-imageupdater-manager
+        namespace: argo
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: argocd-imageupdater-manager
+      subjects:
+        - kind: ServiceAccount
+          name: argo-argocd-application-controller
+          namespace: argo
+
+
+argocd-image-updater:
+  replicaCount: 1
+  metrics:
+    enabled: true
+  config:
+    registries: []
+  resources:
+    limits:
+      cpu: 50m
+      memory: 64Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
+
+argo-rollouts:
+  controller:
+    replicas: 1
+    metrics:
+      enabled: true
+    extraArgs:
+      - "--traefik-api-group=traefik.io"
+      - "--traefik-api-version=traefik.io/v1alpha1"
+    resources:
+      limits:
+        cpu: 100m
+        memory: 96Mi
+      requests:
+        cpu: 10m
+        memory: 48Mi

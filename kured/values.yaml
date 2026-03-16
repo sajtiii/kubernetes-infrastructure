@@ -1,0 +1,15 @@
+kured:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+  metrics:
+    create: false
+  service:
+    create: true
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8080"

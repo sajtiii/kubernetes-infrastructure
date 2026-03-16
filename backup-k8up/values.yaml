@@ -1,0 +1,20 @@
+backup:
+  schedule: '@daily-random'
+  namespaces:
+    - default
+  repo:
+    url: ""
+    username: ""
+    password: ""
+    encryptionKey: ""
+  retention:
+    keepLast: 5
+    keepDaily: 3
+    keepWeekly: 4
+  prometheus:
+    url: "http://prometheus-agent-prometheus-pushgateway.monitoring.svc.cluster.local:9091"
+
+k8up:
+  k8up:
+    timezone: "UTC"
+    skipWithoutAnnotation: false
