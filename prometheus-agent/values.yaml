@@ -55,21 +55,29 @@ prometheus:
     revisionHistoryLimit: 1
 
     global:
-      scrape_interval: 60s
+      scrape_interval: 30s
       scrape_timeout: 10s
       evaluation_interval: 60s
 
     persistentVolume:
       enabled: false
 
-    remoteWrite: [] # Should be set to the URL of the Prometheus server that will receive the data from this agent
+    remoteWrite:
+      - url: "https://<remote-write-url>/api/v1/write"
+        queue_config:
+          max_shards: 2
+          min_shards: 1
+          max_samples_per_send: 500
+          batch_send_deadline: 5s
+          min_backoff: 30ms
+          max_backoff: 5s
 
     defaultFlagsOverride:
       - --agent
       - --config.file=/etc/config/prometheus.yml
       - --storage.agent.wal-compression
       - --storage.agent.retention.max-time=15m
-      - --storage.agent.wal-truncate-frequency=5m
+      - --storage.agent.wal-truncate-frequency=1m
       - --web.console.libraries=/etc/prometheus/console_libraries
       - --web.console.templates=/etc/prometheus/consoles
       - --web.enable-lifecycle
