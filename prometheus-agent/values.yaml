@@ -64,6 +64,7 @@ prometheus:
 
     remoteWrite:
       - url: "https://<remote-write-url>/api/v1/write"
+        remote_timeout: 15s
         queue_config:
           max_shards: 2
           min_shards: 1
